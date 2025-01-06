@@ -12,12 +12,8 @@ This is a "companion repository" if you want to use imported JavaScript library 
 3. Run `npm run run` in a terminal in the checked out repository.
 4. Run `module = replRequire("modulename")` in Obsidian with plugin repl. This is like the `require` function in node JavaScript
 
-
-# Attribution and prior work
-This approach is based on how plugins are built for Obsidian, code is directly taken from the MIT-licensed sample plugin repository for Obsidian.
-
-
 # A technical explanation
+<a name="technical"></a>
 You do not need to understand this to use this tool, but if you are interested this is an explanation of how this works.
 
 Obsidian is based on Electron, a tool for creating desktop apps in JavaScript. Electron is based on node js which can import modules with [`require`](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) using the [CommonJS](https://nodejs.org/api/modules.html) module system. This means that some modules (including builtin modules can be accessed with `require`). However, where Obsidian looks for modules is fixed, [cannot be added to](https://github.com/nodejs/node-v0.x-archive/issues/2234) and is readonly.
@@ -26,3 +22,6 @@ To get around this plugins are built with the JavaScript "bundler" [esbuild](htt
 
 
 This repository uses the same approch.
+
+# Attribution and prior work
+This approach is based on how plugins are built for Obsidian, code is directly taken from the MIT-licensed sample plugin repository for Obsidian.
