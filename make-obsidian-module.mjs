@@ -1,8 +1,8 @@
-import esbuild from "esbuild";
-import builtins from "builtin-modules";
 import * as fs from "fs";
 import { promisify } from 'util'
 import { spawnSync } from 'child_process'
+import builtins from "builtin-modules";
+import process from "process";
 
 
 const banner =
@@ -33,12 +33,15 @@ async function buildImports(packages) {
 
 async function installImports(packages) {
     packages.map((p) => {
-        let status = spawnSync("npm", ["install", p])
-        if (status != 0) {
-            new Error(`npm install failed for ${p}`)
+        console.log(`Installing ${p}...`)
+        let proc = spawnSync("npm", ["install", p])
+        if (proc.status != 0) {
+            console.error(proc.stderr.toString())
+            throw new Error(`npm install failed for ${p}`)
         }
     })}
 
+import esbuild from "esbuild";
 const context = await esbuild.context({
 	banner: {
 		js: banner,
@@ -69,7 +72,11 @@ const context = await esbuild.context({
 	minify: false,
 });
 
-const packages = await getPackages()
-await buildImports(packages)
-await installImports(packages)
+// const packages = await getPackages()
+// await buildImports(packages)
+// console.log("Installing packages...")
+// await installImports(packages)
+// console.log("Building imports.js")
 await context.rebuild();
+console.log("Finished")
+process.exit(0)
