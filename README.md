@@ -7,7 +7,7 @@ This is a "companion repository" if you want to use imported JavaScript library 
 
 # Using
 1. Check out this repository into your vault
-`git checkout git@github.com:talwrii/plugin-repl-imports.git`
+`git clone git@github.com:talwrii/plugin-repl-imports.git`
 2. Add the npm modules you want to install to `imports.txt`
 3. Open a terminal in the checked out repository.
 4. Run `npm install`
