@@ -9,8 +9,10 @@ This is a "companion repository" if you want to use imported JavaScript library 
 1. Check out this repository into your vault
 `git checkout git@github.com:talwrii/plugin-repl-imports.git`
 2. Add the npm modules you want to install to `imports.txt`
-3. Run `npm run run` in a terminal in the checked out repository.
-4. Run `module = replRequire("modulename")` in Obsidian with plugin repl. This is like the `require` function in node JavaScript
+3. Open a terminal in the checked out repository.
+4. Run `npm install`
+4. Run `npm run run`
+5. Run `module = replRequire("modulename")` in Obsidian with plugin repl. This is like the `require` function in node JavaScript
 
 # A technical explanation
 <a name="technical"></a>
