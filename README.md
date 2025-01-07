@@ -1,5 +1,5 @@
 # Plugin REPL imports
-Import and use npm modules in [Plugin REPL](https://readwithai.substack.com/p/obsidian-plugin-repl)
+Import and use NPM modules in [Plugin REPL](https://readwithai.substack.com/p/obsidian-plugin-repl)
 
 Plugin REPL is a plugin for the note taking app Obsidian that allows rapid automation of Obsidian from within Obsidian itself. It is also useful for very fast iteration when creating plugins.
 
