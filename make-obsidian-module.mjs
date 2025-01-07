@@ -24,11 +24,10 @@ async function getPackages() {
 }
 
 async function buildImports(packages) {
-    const imports = packages.map((p) => `import * as ${p} from '${p}'`).join("\n")
-    const exports = packages.map((p) => `export const ${p} = ${p}`).join("\n")
+    const code = packages.map((p) => `packages['${p}'] = require('${p}')`).join("\n")
 
-    const output = `${imports}\n${exports}`
-    await write("imports.ts", output)
+    const output = `export var packages = {}; ${code}`
+    await write("imports.js", output)
 }
 
 async function installImports(packages) {
@@ -46,7 +45,7 @@ const context = await esbuild.context({
 	banner: {
 		js: banner,
 	},
-	entryPoints: ["imports.ts"],
+	entryPoints: ["imports.js"],
 	bundle: true,
 	external: [
 		"obsidian",
@@ -68,15 +67,15 @@ const context = await esbuild.context({
 	logLevel: "info",
 	sourcemap: "inline",
 	treeShaking: true,
-	outfile: "imports.js",
+	outfile: "imports_bundled.js",
 	minify: false,
 });
 
-// const packages = await getPackages()
-// await buildImports(packages)
-// console.log("Installing packages...")
-// await installImports(packages)
-// console.log("Building imports.js")
+const packages = await getPackages()
+await buildImports(packages)
+console.log("Installing packages...")
+await installImports(packages)
+console.log("Building imports_bundled.js")
 await context.rebuild();
 console.log("Finished")
 process.exit(0)
